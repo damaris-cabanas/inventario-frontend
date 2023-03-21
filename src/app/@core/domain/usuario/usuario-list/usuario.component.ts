@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Usuario } from '../usuario.model';
-import { TipoUser } from '../../../enum/tipo_user.enum';
 import { UsuariosService } from '../usuario.service';
 import { NuevoUsuarioComponent } from '../../nuevo-usuario/nuevo-usuario.component';
 

@@ -2,35 +2,35 @@
     <div class="p-card-content">
         <div class="p-fluid ng-star-inserted">
             <div class="p-field">
-                        <label id="form">ID:</label>
-                        <p-inputNumber [disabled]="true"  [(ngModel)]="otroses.id"> </p-inputNumber>
+                        <label class="form">ID:</label>
+                        <p-inputNumber [disabled]="true"  [(ngModel)]="inventarios.id"> </p-inputNumber>
             </div>
-            
+
             <div class="p-field">
                 <span>
                     <label id="form">Usuario actual:</label>
-                    <input type="text" id="lblUsuario" pInputText [(ngModel)]="otroses.usuario"> 
+                    <input type="text" id="lblUsuario" pInputText [(ngModel)]="inventarios.codigo">
                 </span>
             </div>
 
             <div class="p-field">
                 <span>
                     <label id="form">Usuario anterior:</label>
-                    <input type="text" id="lblUser" pInputText [(ngModel)]="otroses.userold"> 
+                    <input type="text" id="lblUser" pInputText [(ngModel)]="inventarios.descripcion">
                 </span>
             </div>
 
             <div class="p-field">
                 <span>
                     <label id="form">Ubicación:</label>
-                    <input type="text" id="lblArea" pInputText [(ngModel)]="otroses.ubicacion"> 
+                    <input type="text" id="lblArea" pInputText [(ngModel)]="inventarios.marca">
                 </span>
             </div>
 
             <div class="p-field">
                 <span>
                     <label id="form">Tipo:</label>
-                    <input type="text" id="lblArea" pInputText [(ngModel)]="otroses.tipo"> 
+                    <input type="text" id="lblArea" pInputText [(ngModel)]="inventarios.modelo">
                 </span>
             </div>
 
@@ -38,21 +38,21 @@
             <div class="p-field">
                 <span>
                     <label id="form">Modelo:</label>
-                    <input type="text" id="lblModelo" pInputText [(ngModel)]="otroses.modelo"> 
+                    <input type="text" id="lblModelo" pInputText [(ngModel)]="inventarios.bp">
                 </span>
             </div>
 
             <div class="p-field">
                 <span>
                     <label id="form">BP:</label>
-                    <input type="text" id="lblBp" pInputText [(ngModel)]="otroses.bp"> 
+                    <input type="text" id="lblBp" pInputText [(ngModel)]="inventarios.comentario">
                 </span>
             </div>
-          
+
             <div class="p-field">
                 <span>
                     <label>Estado:</label>
-                    <p-dropdown [options]="estados" [(ngModel)]="otroses.status" placeholder="Seleccione" optionValue="value" optionLabel="label"></p-dropdown>
+                    <p-dropdown [options]="estados" [(ngModel)]="inventarios.status" placeholder="Seleccione" optionValue="value" optionLabel="label"></p-dropdown>
                 </span>
             </div>
 

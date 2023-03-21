@@ -1,4 +1,3 @@
-import { Responsabilidad } from "../../enum/responsabilidad.enum";
 import { Status } from "../enums/status.enums";
 
 export class Otros {
@@ -11,6 +10,5 @@ export class Otros {
     modelo!: string;
     bp!: string;
     status!: Status;
-    responsabilidad!: Responsabilidad;
   }
   

@@ -7,34 +7,19 @@ import { MenuItem } from 'primeng/api';
 export class MenubarItemsService {
   items: MenuItem[] = [
     {
-      label: 'Computadoras',
-      icon: 'pi pi-desktop',
-      routerLink: ['computadora'],
-    },
-    {
-      label: 'Notebook',
-      icon: 'pi pi-tablet',
-      routerLink: ['notebook'],
-    },
-    {
-      label: 'Teléfonos',
-      icon: 'pi pi-phone',
-      routerLink: ['telefono'],
-    },
-    {
-      label: 'Monitores',
-      icon: 'pi pi-desktop',
-      routerLink: ['monitor'],
-    },
-    {
-      label: 'UPS',
+      label: 'Depositos',
       icon: 'pi pi-inbox',
-      routerLink: ['ups'],
+      routerLink: ['deposito'],
     },
     {
-      label: 'Teclados',
+      label: 'Estantes',
+      icon: 'pi pi-table',
+      routerLink: ['estante'],
+    },
+    {
+      label: 'Inventario',
       icon: 'pi pi-th-large',
-      routerLink: ['teclado'],
+      routerLink: ['inventario'],
     },
     {
       label: 'Otros',

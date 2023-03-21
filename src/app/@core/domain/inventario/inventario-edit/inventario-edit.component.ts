@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { getStatusDescription, Status } from '../../enums/status.enums';
-import { Otros } from '../otros.model';
-import { OtrosesService } from '../otros.service';
+import { Inventario } from '../inventario.model';
+import { InventarioService } from '../inventario.service';
+
 
 @Component({
-  selector: 'app-otros-edit',
-  templateUrl: './otros-edit.component.html',
-  styleUrls: ['./otros-edit.component.css']
+  selector: 'app-inventario-edit',
+  templateUrl: './inventario-edit.component.html',
+  styleUrls: ['./inventario-edit.component.css']
 })
-export class OtrosEditComponent implements OnInit {
+export class InventarioEditComponent implements OnInit {
 
- otroses = new Otros();
+  inventarios = new Inventario();
 
   isModoEdicion: boolean = false;
 
@@ -27,7 +28,7 @@ export class OtrosEditComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private service: OtrosesService,
+    private service: InventarioService,
     private confirmationService: ConfirmationService
 
   ) { }
@@ -36,7 +37,7 @@ export class OtrosEditComponent implements OnInit {
     this.getData();
   }
 
-  
+
   getData() {
     this.activatedRoute.paramMap
       .subscribe(
@@ -48,19 +49,19 @@ export class OtrosEditComponent implements OnInit {
             this.service.getById(id)
               .subscribe(
                 (teclado) => {
-                  this.otroses = teclado;
+                  this.inventarios = teclado;
                 },
                 (error) => {
                   console.log("error al cargar " + error);
                 }
               )
-          } 
+          }
         }
       )
   }
 
   add() {
-    this.service.add(this.otroses)
+    this.service.add(this.inventarios)
       .subscribe(
         () => {
           this.returnToList();
@@ -72,7 +73,7 @@ export class OtrosEditComponent implements OnInit {
   }
 
   update() {
-    this.service.update(this.otroses)
+    this.service.update(this.inventarios)
       .subscribe(
         () => {
           this.returnToList();

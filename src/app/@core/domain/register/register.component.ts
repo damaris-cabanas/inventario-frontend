@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidatorService } from '../../shared/services/validator.service';
-import { TipoUser } from '../../enum/tipo_user.enum';
 import { UsuariosService } from '../usuario/usuario.service';
 
 @Component({
@@ -24,17 +23,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userService:UsuariosService, private validatoForm:ValidatorService) {
     this.form = new FormGroup({});
-    this.stateOptions = this.getTipoUser();
    }
-
-  getTipoUser(){
-    let tipos = Object.values(TipoUser);
-    let userOptions = new Array();
-    for(let T of tipos){
-        userOptions.push({name: T, value: T})
-      }
-    return userOptions;
-  }
 
   ngOnInit(): void {
     this.buildForm();
@@ -46,7 +35,6 @@ export class RegisterComponent implements OnInit {
       login: new FormControl('', [Validators.required, Validators.maxLength(10)]),
       password: new FormControl('', [Validators.required]),
       passwordRepetido: new FormControl('', [Validators.required]),
-      tipo_user: new FormControl(this.getTipoUser()[0].value,[]),
     });
   }
 

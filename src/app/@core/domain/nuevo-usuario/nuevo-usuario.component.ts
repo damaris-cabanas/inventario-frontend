@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { TipoUser } from '../../enum/tipo_user.enum';
 import { ValidatorService } from '../../shared/services/validator.service';
 import { Usuario } from '../usuario/usuario.model';
 import { UsuariosService } from '../usuario/usuario.service';

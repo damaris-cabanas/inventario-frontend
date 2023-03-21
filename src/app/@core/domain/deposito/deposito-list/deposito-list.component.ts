@@ -39,6 +39,10 @@ export class DepositoListComponent implements OnInit {
     });
   }
 
+  getEventValue(event: any){
+    return (event.target as HTMLInputElement).value;
+  }
+
   onDelete(id: number) {
     this.depositoService.deleteDeposito(id).subscribe((_) => {
       this.depositos = this.depositos.filter((deposito) => deposito.id != id);
