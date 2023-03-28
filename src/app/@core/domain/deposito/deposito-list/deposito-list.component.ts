@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { environment } from 'src/environments/environment';
 import { Deposito } from '../deposito.model';
 import { DepositoService } from '../deposito.service';
+import {Estante} from "../../estantes/estantes.model";
+import {EstanteService} from "../../estantes/estantes.service";
 
 @Component({
   selector: 'app-deposito-list',
@@ -9,48 +13,93 @@ import { DepositoService } from '../deposito.service';
   styleUrls: ['./deposito-list.component.css'],
 })
 export class DepositoListComponent implements OnInit {
-  depositos!: Deposito[];
-  dataLoading: boolean = true;
+
+  depositos: Deposito[] = [];
+  estantes: Estante[] = [];
+
+  display: boolean = false;
+
+  private url = `${environment.URL_API}/deposito`;
+
   constructor(
-    private depositoService: DepositoService,
+    private service: DepositoService,
+    private estanteService: EstanteService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
-  ) {}
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    this.depositoService.getDepositos().subscribe((depositos) => {
-      this.depositos = depositos;
-      this.dataLoading = false;
-    });
+    this.getDeposito();
+    this.getEstante();
   }
 
-  deleteRow(id: number) {
-    console.log(id);
-    this.confirmationService.confirm({
-      accept: () => {
-        this.onDelete(id);
-      },
-      acceptLabel: 'Sí',
-      header: 'Sistema',
-      icon: 'pi pi-exclamation-triangle',
-      message:
-        '¿Seguro que desea borrar el registro? Esta acción no se puede deshacer.',
-      defaultFocus: 'none',
-    });
+  getDeposito(){
+    this.service.getAll()
+      .subscribe(
+        (res) => {
+          this.depositos = res;
+          console.log(this.depositos);
+        },
+        (err) => {
+          console.error(err);
+        }
+      )
   }
 
   getEventValue(event: any){
     return (event.target as HTMLInputElement).value;
   }
 
-  onDelete(id: number) {
-    this.depositoService.deleteDeposito(id).subscribe((_) => {
-      this.depositos = this.depositos.filter((deposito) => deposito.id != id);
-      this.messageService.add({
-        severity: 'info',
-        summary: 'Sistema',
-        detail: 'Registro eliminado',
-      });
+  delete(id: any) {
+    this.confirmationService.confirm({
+      message: 'Está seguro que desea eliminar?',
+      accept: () => {
+        this.service.delete(id)
+          .subscribe(
+            (res) => {
+              this.getDeposito();
+            },
+            (error) => {
+              this.display = true;
+            }
+          )
+      },
+      acceptLabel: "Confirmar",
+      acceptButtonStyleClass: "p-button-danger p-mr-2"
+    });
+  }
+
+
+//   ESTANTES
+  getEstante(){
+    this.estanteService.getAll()
+      .subscribe(
+        (res) => {
+          this.estantes = res;
+          console.log(this.estantes);
+        },
+        (err) => {
+          console.error(err);
+        }
+      )
+  }
+
+  onDelete(id: any) {
+    this.confirmationService.confirm({
+      message: 'Está seguro que desea eliminar?',
+      accept: () => {
+        this.estanteService.delete(id)
+          .subscribe(
+            (res) => {
+              this.getEstante();
+            },
+            (error) => {
+              this.display = true;
+            }
+          )
+      },
+      acceptLabel: "Confirmar",
+      acceptButtonStyleClass: "p-button-danger p-mr-2"
     });
   }
 }

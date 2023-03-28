@@ -3,6 +3,7 @@ import { Clasificacion } from '../enums/clasificacion.enum';
 import { LugarActual } from '../enums/lugar-actual.enum';
 import { Prestado } from '../enums/prestado.enum';
 import { Status } from '../enums/status.enums';
+import {Estante} from "../estantes/estantes.model";
 
 export class Inventario {
     filter(arg0: (val: any) => boolean): Inventario[] {
@@ -29,8 +30,10 @@ export class Inventario {
 
     comentario!: string;
 
-    lugaractual!: LugarActual;
+    lugaractual!: string;
 
     prestado!: Prestado;
+
+    estante!: string;
 
 }

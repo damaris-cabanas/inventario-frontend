@@ -1,1 +1,37 @@
-<p>estantes-edit works!</p>
+<div class="p-fluid p-formgrid p-grid">
+  <div class="p-card-content">
+    <div class="p-fluid ng-star-inserted">
+      <div class="p-field">
+        <label class="form">ID:</label>
+        <p-inputNumber [disabled]="true"  [(ngModel)]="estantes.id"> </p-inputNumber>
+      </div>
+
+      <div class="p-field">
+              <span>
+                  <label id="form">Nombre:</label>
+                  <input type="text" id="lblUsuario" pInputText [(ngModel)]="estantes.nombre">
+              </span>
+      </div>
+
+      <div class="p-field">
+              <span>
+                  <label>Estado:</label>
+                  <p-dropdown [options]="estados" [(ngModel)]="estantes.status" placeholder="Seleccione" optionValue="value" optionLabel="label"></p-dropdown>
+              </span>
+      </div>
+
+      <div class="p-field">
+              <span>
+                  <label id="form">Deposito:</label>
+                  <p-dropdown [(ngModel)]="estantes.deposito" placeholder="Seleccione" optionValue="value" optionLabel="label"></p-dropdown>
+              </span>
+      </div>
+
+      <div class="p-field" style="margin-top: 10px;">
+        <button pButton pRipple type="button" (click)="isModoEdicion ? update() : add()" styleClass="p-button-success p-mr-2 p-mb-2" id="guardar" label="Guardar" ></button>
+        <button pButton pRipple type="button" id="cancelar" routerLink="/estante" label="Cancelar" ></button>
+
+      </div>
+    </div>
+  </div>
+</div>

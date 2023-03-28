@@ -1,54 +1,30 @@
-<div id="main" class="grid p-input-filled">
-  <div class="col">
-    <div id="card" class="grid justify-content-center ml-2">
-      <button
-        pButton
-        pRipple
-        icon="pi pi-arrow-left"
-        label="Volver"
-        [routerLink]="['/depositos']"
-      ></button>
-      <button
-        pButton
-        pRipple id="guardar"
-        class="p-button-info ml-2"
-        icon="pi pi-save"
-        label="Guardar"
-        [disabled]="miFormulario.pristine"
-        (click)="handleSubmit()"
-      ></button>
-    </div>
-    <div class="grid justify-content-center">
-      <form [formGroup]="miFormulario">
-        <div class="mt-5">
-          <span
-            [ngClass]="{ 'p-input-icon-right': loading }"
-            class="p-float-label"
-          >
-            <input
-              type="text"
-              pInputText
-              [disabled]="true"
-              [value]="depositoId"
-            />
-            <i *ngIf="loading" class="pi pi-spin pi-spinner"></i>
-            <label>ID</label>
-          </span>
+<div class="p-fluid p-formgrid p-grid">
+  <div class="p-card-content">
+      <div class="p-fluid ng-star-inserted">
+          <div class="p-field">
+                      <label class="form">ID:</label>
+                      <p-inputNumber [disabled]="true"  [(ngModel)]="depositos.id"> </p-inputNumber>
+          </div>
+
+          <div class="p-field">
+              <span>
+                  <label id="form">Nombre:</label>
+                  <input type="text" id="lblUsuario" pInputText [(ngModel)]="depositos.nombre">
+              </span>
+          </div>
+
+        <div class="p-field">
+              <span>
+                  <label>Estado:</label>
+                  <p-dropdown [options]="estados" [(ngModel)]="depositos.status" placeholder="Seleccione" optionValue="value" optionLabel="label"></p-dropdown>
+              </span>
         </div>
-        <div class="mt-3">
-          <span
-            [ngClass]="{ 'p-input-icon-right': loading }"
-            class="p-float-label"
-          >
-            <input formControlName="nombre" type="text" pInputText />
-            <label>Nombre</label>
-            <i *ngIf="loading" class="pi pi-spin pi-spinner"></i>
-            <small *ngIf="campoInvalido('nombre')" class="p-error block"
-              >Requerido: máximo 50 caracteres</small
-            >
-          </span>
-        </div>
-      </form>
-    </div>
+
+          <div class="p-field" style="margin-top: 10px;">
+              <button pButton pRipple type="button" (click)="isModoEdicion ? update() : add()" styleClass="p-button-success p-mr-2 p-mb-2" id="guardar" label="Guardar" ></button>
+              <button pButton pRipple type="button" id="cancelar" routerLink="/deposito" label="Cancelar" ></button>
+
+          </div>
+      </div>
   </div>
 </div>

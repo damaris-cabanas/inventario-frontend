@@ -1,51 +1,51 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Deposito } from '../deposito/deposito.model';
-import { Estantes } from './estantes.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
+import { Estante } from './estantes.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class EstantesService {
-  private url = `${environment.URL_API}/estantes/`;
+export class EstanteService {
+  private url = `${environment.URL_API}/estante/`;
 
   deposito!: Deposito;
-  estantes: Estantes;
+  estantes: Estante;
 
   constructor(private http: HttpClient) {
-    this.estantes = new Estantes();
+    this.estantes = new Estante();
   }
   //Todos los estantes
   getAll() {
-    return this.http.get<Estantes[]>(this.url);
+    return this.http.get<Estante[]>(this.url);
   }
 
   //Se obtiene por id de Deposito
   getByIdDeposito(depositoId: number) {
-    return this.http.get<Estantes[]>(
+    return this.http.get<Deposito[]>(
       this.url + '/api/v1/deposito/' + depositoId
     );
   }
 
   getByIdEstantes(estantesId: number){
-    return this.http.get<Estantes[]>(this.url + 'estantes/' + estantesId);
+    return this.http.get<Estante[]>(this.url + 'estantes/' + estantesId);
   }
 
   //Se obtiene por id
   getById(id: any) {
-    return this.http.get<Estantes>(this.url + id);
+    return this.http.get<Estante>(this.url + id);
   }
 
   //Crear
-  add(estantes: Estantes) {
-    return this.http.post<Estantes>(this.url, estantes);
+  add(estantes: Estante) {
+    return this.http.post<Estante>(this.url, estantes);
   }
 
   //Modificar
-  update(estantes: Estantes) {
-    return this.http.put<Estantes>(this.url + estantes.id, estantes);
+  update(estantes: Estante) {
+    return this.http.put<Estante>(this.url + estantes.id, estantes);
   }
 
   delete(id: any) {

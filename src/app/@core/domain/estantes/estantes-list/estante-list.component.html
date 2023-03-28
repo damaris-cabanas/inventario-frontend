@@ -3,14 +3,13 @@
       <p-toolbar styleClass="mb-4">
           <ng-template pTemplate="right">
             <div>
-              <h1 id="titulo">Inventario</h1>
+              <h1 id="titulo">Estante</h1>
             <button id="nuevo" pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-rounded p-button-primary" [routerLink]="['form']"></button>
             </div>
           </ng-template>
       </p-toolbar>
     </div>
-
-    <p-table #dt [value]="inventarios" [paginator]="true" [rows]="100"
+    <p-table #dt [value]="estantes" [paginator]="true" [rows]="100"
       [showCurrentPageReport]="true"
       currentPageReportTemplate="{first} - {last} de {totalRecords}" [globalFilterFields]="['codigo', 'descripcion','clasificacion', 'marca', 'modelo', 'bp', 'lugaractual', 'prestado',
       'serial','comentario', 'status']" responsiveLayout="scroll" [showCurrentPageReport]="true"
@@ -28,59 +27,27 @@
       <ng-template pTemplate="header" class="align-items-center">
         <tr >
           <th pSortableColumn="id"   id="listado" >ID<p-sortIcon field="id"></p-sortIcon></th>
-          <th id="listado">Código</th>
-          <th id="listado">Descripción</th>
-          <th id="listado">Clasificación</th>
-          <th id="listado">Marca</th>
-          <th id="listado">Modelo</th>
-          <th id="listado">BP</th>
-          <th id="listado">Nº Serie</th>
+          <th id="listado">Nombre</th>
           <th id="listado">Estado</th>
-          <th id="listado">Comentarios</th>
-          <th id="listado">Lugar actual</th>
-          <th id="listado">Prestado</th>
-          <th id="listado">Estante</th>
+          <th id="listado">Deposito</th>
           <th id="listado">Opciones</th>
         </tr>
       </ng-template>
-
-
-      <ng-template pTemplate="body" let-inventarios>
+      <ng-template pTemplate="body" let-estantes>
         <tr>
-          <td id="listado">{{ inventarios.id }}</td>
-          <td id="listado">{{ inventarios.codigo }}</td>
-          <td id="listado">{{ inventarios.descripcion }}</td>
+          <td id="listado">{{ estantes.id }}</td>
+          <td id="listado">{{ estantes.nombre }}</td>
 
           <td id="status">
-            <div [ngStyle]="getStyleClasificacion(inventarios.clasificacion)">{{ inventarios.clasificacion }}</div>
+            <div>{{ estantes.status }}</div>
           </td>
 
-          <td id="listado">{{ inventarios.marca }}</td>
-          <td id="listado">{{ inventarios.modelo }}</td>
-          <td id="listado">{{ inventarios.bp }}</td>
-          <td id="listado">{{ inventarios.serial }}</td>
-
-          <td id="status">
-            <div [ngStyle]="getStyleStatus(inventarios.status)">{{ inventarios.status }}</div>
-          </td>
-
-          <td id="listado">{{ inventarios.comentario }}</td>
-
-          <td id="status">
-            <div [ngStyle]="{
-             'color': inventarios.lugaractual === 'Lab IIoT' ? '#A96224' : '#2457C5'}"><strong>{{ inventarios.lugaractual }}</strong></div>
-          </td>
-
-          <td id="status">
-            <div [ngStyle]="{'color': inventarios.prestado === 'Sí' ? '#256029' : '#c63737'}"><strong>{{ inventarios.prestado }}</strong></div>
-          </td>
-
-          <td id="listado">{{ inventarios.estante.nombre }}</td>
+          <td id="listado">{{ estantes.deposito.nombre }}</td>
 
           <td>
             <div class="btn">
-              <button id="edit" pButton pRipple icon="pi pi-pencil" class="p-button-rounded mr-2 p-button-info" [routerLink]="['form', inventarios.id]"></button>
-              <button *ngIf="inventarios.status === 'OK'" id="delete" pButton pRipple icon="pi pi-trash" class="p-button-rounded mr-2 p-button-danger" (click)="delete(inventarios.id)"></button>
+              <button id="edit" pButton pRipple icon="pi pi-pencil" class="p-button-rounded mr-2 p-button-info" [routerLink]="['form', estantes.id]"></button>
+              <button *ngIf="estantes.status === 'OK'" id="delete" pButton pRipple icon="pi pi-trash" class="p-button-rounded mr-2 p-button-danger" (click)="delete(estantes.id)"></button>
             </div>
           </td>
         </tr>

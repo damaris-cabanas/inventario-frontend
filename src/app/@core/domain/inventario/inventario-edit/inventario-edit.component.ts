@@ -4,6 +4,9 @@ import { ConfirmationService } from 'primeng/api';
 import { getStatusDescription, Status } from '../../enums/status.enums';
 import { Inventario } from '../inventario.model';
 import { InventarioService } from '../inventario.service';
+import {getPrestadoDescription, Prestado} from "../../enums/prestado.enum";
+import {getLugarActualDescription, LugarActual} from "../../enums/lugar-actual.enum";
+import {Clasificacion, getClasificacionDescription} from "../../enums/clasificacion.enum";
 
 
 @Component({
@@ -18,12 +21,15 @@ export class InventarioEditComponent implements OnInit {
   isModoEdicion: boolean = false;
 
   estados = Object.values(Status).map(value => ({ label: getStatusDescription(value), value: value}));
+  prestados = Object.values(Prestado).map(value => ({ label: getPrestadoDescription(value), value: value}));
+  // lugaractual = Object.values(LugarActual).map(value => ({ label: getLugarActualDescription(value), value: value}));
+  clasificaciones = Object.values(Clasificacion).map(value => ({ label: getClasificacionDescription(value), value: value}));
 
   displayDialog: boolean = false;
 
   submitted: boolean | undefined;
 
-  ruta = "/otros";
+  ruta = "/inventario";
 
   constructor(
     private router: Router,
@@ -48,8 +54,8 @@ export class InventarioEditComponent implements OnInit {
             this.isModoEdicion = true;
             this.service.getById(id)
               .subscribe(
-                (teclado) => {
-                  this.inventarios = teclado;
+                (inventario) => {
+                  this.inventarios = inventario;
                 },
                 (error) => {
                   console.log("error al cargar " + error);
@@ -79,7 +85,7 @@ export class InventarioEditComponent implements OnInit {
           this.returnToList();
         },
         (erro) => {
-          console.error("Eror al actualizar " + erro);
+          console.error("Error al actualizar " + erro);
         }
       )
   }

@@ -1,5 +1,5 @@
 .p-fluid {
-  width: 600px;
+  width: 350px;
   height: auto;
   margin: auto;
   margin-top: 20px;
@@ -14,7 +14,7 @@
 .p-field{
   padding-top: 20px;
   margin: auto;
-  width: 500px;
+  width: 250px;
 }
 
 .p-col-12{

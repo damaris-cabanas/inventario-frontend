@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Deposito } from '../deposito.model';
 import { switchMap, tap } from 'rxjs/operators';
 import { DepositoService } from '../deposito.service';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { getStatusDescription, Status } from '../../enums/status.enums';
 
 @Component({
   selector: 'app-deposito-edit',
@@ -12,107 +13,79 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./deposito-edit.component.css'],
 })
 export class DepositoEditComponent implements OnInit {
-  loading: boolean = false;
-  depositoId!: number;
-  deposito: Deposito = {
-    id: 0,
-    nombre: '',
-  };
-  miFormulario: FormGroup = this.fb.group({
-    nombre: ['', [Validators.required, Validators.maxLength(50)]],
-  });
+ 
+  depositos = new Deposito();
+
+  isModoEdicion: boolean = false;
+
+  estados = Object.values(Status).map(value => ({ label: getStatusDescription(value), value: value}));
+
+  displayDialog: boolean = false;
+
+  submitted: boolean | undefined;
+
+  ruta = "/deposito";
+
   constructor(
-    private fb: FormBuilder,
     private router: Router,
-    private activeRoute: ActivatedRoute,
-    private depositoService: DepositoService,
-    private messageService: MessageService
-  ) {}
+    private activatedRoute: ActivatedRoute,
+    private service: DepositoService,
+    private confirmationService: ConfirmationService
+
+  ) { }
 
   ngOnInit(): void {
-    this.activeRoute.params
-      .pipe(
-        switchMap(({ id }) => {
-          this.depositoId = id ? id : 0;
-          if (!id) throw new Error();
-          this.miFormulario.disable();
-          this.loading = true;
-          return this.depositoService.getDeposito(id);
-        })
+    this.getData();
+  }
+
+
+  getData() {
+    this.activatedRoute.paramMap
+      .subscribe(
+        (paramMap) => {
+          const id = paramMap.get('id');
+
+          if (id) {
+            this.isModoEdicion = true;
+            this.service.getById(id)
+              .subscribe(
+                (deposito) => {
+                  this.depositos = deposito;
+                },
+                (error) => {
+                  console.log("error al cargar " + error);
+                }
+              )
+          }
+        }
       )
-      .subscribe({
-        next: (deposito) => {
-          this.deposito = deposito;
-          this.miFormulario.reset(deposito);
-          this.miFormulario.enable();
-          this.loading = false;
-        },
-        error: () => {
-          this.router.navigate(['/depositos/form']);
-          this.loading = false;
-          this.miFormulario.enable();
-        },
-      });
   }
 
-  campoInvalido(campo: string) {
-    return (
-      this.miFormulario.get(campo)?.touched &&
-      this.miFormulario.get(campo)?.invalid
-    );
+  add() {
+    this.service.add(this.depositos)
+      .subscribe(
+        () => {
+          this.returnToList();
+        },
+        (error) => {
+          console.error(error)
+        }
+      )
   }
 
-  handleSubmit() {
-    if (this.miFormulario.invalid) {
-      this.miFormulario.markAllAsTouched();
-      return;
-    }
-    if (this.depositoId) this.actualizar();
-    else this.insertar();
+  update() {
+    this.service.update(this.depositos)
+      .subscribe(
+        () => {
+          this.returnToList();
+        },
+        (erro) => {
+          console.error("Error al actualizar " + erro);
+        }
+      )
   }
 
-  actualizar() {
-    const nombre: string = this.miFormulario.get('nombre')?.value;
-    const { id } = this.deposito;
-    this.depositoService
-      .putDeposito(id, { ...this.deposito, nombre })
-      .subscribe({
-        next: (res) => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Sistema',
-            detail: 'Registro actualizado',
-          });
-        },
-        error: (e) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Sistema',
-            detail: 'Error al insertar',
-          });
-        },
-      });
-  }
-
-  insertar() {
-    this.depositoService
-      .postDeposito({ ...this.miFormulario.value })
-      .subscribe({
-        next: (res) => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Sistema',
-            detail: 'Registro insertado',
-          });
-          this.router.navigate(['/depositos', 'form', res.data.id]);
-        },
-        error: (e) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Sistema',
-            detail: 'Error al insertar',
-          });
-        },
-      });
+  returnToList() {
+    this.router.navigate([this.ruta]);
   }
 }

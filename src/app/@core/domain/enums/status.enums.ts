@@ -24,6 +24,6 @@ export function getStatusDescription(value: Status) {
       return 'MAN';
 
     default:
-      return null;
+      return 'OK';
   }
 }

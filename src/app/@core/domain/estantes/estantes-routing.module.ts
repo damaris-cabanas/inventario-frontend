@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EstantesEditComponent } from './estantes-edit/estantes-edit.component';
-import { EstantesListComponent } from './estantes-list/estantes-list.component';
+import { EstanteEditComponent } from './estantes-edit/estantes-edit.component';
+import { EstanteListComponent } from './estantes-list/estante-list.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
-      { path: '', component: EstantesListComponent },
-      { path: 'form', component: EstantesEditComponent },
-      { path: 'form/:id', component: EstantesEditComponent },
+      { path: '', component: EstanteListComponent },
+      { path: 'form', component: EstanteEditComponent },
+      { path: 'form/:id', component: EstanteEditComponent },
     ],
   },
 ];
@@ -18,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class EstantesRoutingModule {}
+export class EstanteRoutingModule {}

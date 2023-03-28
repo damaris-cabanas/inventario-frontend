@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DepositoModule } from './@core/domain/deposito/deposito.module';
-import { EstantesModule } from './@core/domain/estantes/estantes.module';
+// import { EstantesModule } from './@core/domain/estantes/estantes.module';
 import { MercaderiaModule } from './@core/domain/mercaderia/mercaderia.module';
 import { SharedModule } from './@core/shared/shared.module';
 import { LoginComponent } from './@core/domain/login/login.component';
@@ -33,6 +33,7 @@ import { AuthService } from './@core/shared/services/auth.service';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { EstanteModule } from './@core/domain/estantes/estantes.module';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     HttpClientModule,
     AppRoutingModule,
     DepositoModule,
-    EstantesModule,
+    EstanteModule,
     MercaderiaModule,
     SharedModule,
     MenuModule,

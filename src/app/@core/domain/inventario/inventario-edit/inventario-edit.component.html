@@ -8,28 +8,35 @@
 
             <div class="p-field">
                 <span>
-                    <label id="form">Usuario actual:</label>
+                    <label id="form">Código:</label>
                     <input type="text" id="lblUsuario" pInputText [(ngModel)]="inventarios.codigo">
                 </span>
             </div>
 
             <div class="p-field">
                 <span>
-                    <label id="form">Usuario anterior:</label>
+                    <label id="form">Descripción:</label>
                     <input type="text" id="lblUser" pInputText [(ngModel)]="inventarios.descripcion">
                 </span>
             </div>
 
+          <div class="p-field">
+                <span>
+                    <label>Clasificación:</label>
+                    <p-dropdown [options]="clasificaciones" [(ngModel)]="inventarios.clasificacion" placeholder="Seleccione" optionValue="value" optionLabel="label"></p-dropdown>
+                </span>
+          </div>
+
             <div class="p-field">
                 <span>
-                    <label id="form">Ubicación:</label>
+                    <label id="form">Marca:</label>
                     <input type="text" id="lblArea" pInputText [(ngModel)]="inventarios.marca">
                 </span>
             </div>
 
             <div class="p-field">
                 <span>
-                    <label id="form">Tipo:</label>
+                    <label id="form">Modelo:</label>
                     <input type="text" id="lblArea" pInputText [(ngModel)]="inventarios.modelo">
                 </span>
             </div>
@@ -37,28 +44,56 @@
 
             <div class="p-field">
                 <span>
-                    <label id="form">Modelo:</label>
+                    <label id="form">BP:</label>
                     <input type="text" id="lblModelo" pInputText [(ngModel)]="inventarios.bp">
                 </span>
             </div>
 
-            <div class="p-field">
+          <div class="p-field">
                 <span>
-                    <label id="form">BP:</label>
-                    <input type="text" id="lblBp" pInputText [(ngModel)]="inventarios.comentario">
+                    <label id="form">Nº Serie:</label>
+                    <input type="text" id="lblArea" pInputText [(ngModel)]="inventarios.serial">
                 </span>
-            </div>
+          </div>
 
-            <div class="p-field">
+          <div class="p-field">
                 <span>
                     <label>Estado:</label>
                     <p-dropdown [options]="estados" [(ngModel)]="inventarios.status" placeholder="Seleccione" optionValue="value" optionLabel="label"></p-dropdown>
                 </span>
+          </div>
+
+            <div class="p-field">
+                <span>
+                    <label id="form">Comentario:</label>
+                    <input type="text" id="lblBp" pInputText [(ngModel)]="inventarios.comentario">
+                </span>
             </div>
+
+          <div class="p-field">
+                <span>
+                    <label>Lugar Actual:</label>
+                    <input type="text" id="lblArea" pInputText [(ngModel)]="inventarios.lugaractual">
+                </span>
+          </div>
+
+          <div class="p-field">
+                <span>
+                    <label>Prestado:</label>
+                    <p-dropdown [options]="prestados" [(ngModel)]="inventarios.prestado" placeholder="Seleccione" optionValue="value" optionLabel="label"></p-dropdown>
+                </span>
+          </div>
+
+          <div class="p-field">
+                <span>
+                    <label>Estante:</label>
+                    <input type="text" id="lblArea" pInputText [(ngModel)]="inventarios.estante">
+                </span>
+          </div>
 
             <div class="p-field" style="margin-top: 10px;">
                 <button pButton pRipple type="button" (click)="isModoEdicion ? update() : add()" styleClass="p-button-success p-mr-2 p-mb-2" id="guardar" label="Guardar" ></button>
-                <button pButton pRipple type="button" id="cancelar" routerLink="/otros" label="Cancelar" ></button>
+                <button pButton pRipple type="button" id="cancelar" routerLink="/inventario" label="Cancelar" ></button>
 
             </div>
         </div>
