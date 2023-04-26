@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    image: "inventario-frontend:1.8"
+    container_name: front-container
+    restart: always
+    ports:
+      - 4200:4200
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    external: true
