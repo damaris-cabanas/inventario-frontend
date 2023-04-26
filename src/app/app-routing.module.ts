@@ -19,10 +19,6 @@ const routes: Routes = [
       (await import('./@core/domain/estantes/estantes.module')).EstanteModule,
   },
 
-  { path: 'mercaderia', loadChildren: async () =>
-      (await import('./@core/domain/mercaderia/mercaderia.module')).MercaderiaModule,
-  },
-
   { path: 'inventario', loadChildren: async () =>
   (await import('./@core/domain/inventario/inventario.module')).InventarioModule,
   },

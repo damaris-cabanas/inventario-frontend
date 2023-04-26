@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { environment } from 'src/environments/environment';
 import { Deposito } from '../deposito.model';
 import { DepositoService } from '../deposito.service';
 import {Estante} from "../../estantes/estantes.model";
 import {EstanteService} from "../../estantes/estantes.service";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-deposito-list',
@@ -30,7 +30,6 @@ export class DepositoListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDeposito();
-    this.getEstante();
   }
 
   getDeposito(){
@@ -58,40 +57,6 @@ export class DepositoListComponent implements OnInit {
           .subscribe(
             (res) => {
               this.getDeposito();
-            },
-            (error) => {
-              this.display = true;
-            }
-          )
-      },
-      acceptLabel: "Confirmar",
-      acceptButtonStyleClass: "p-button-danger p-mr-2"
-    });
-  }
-
-
-//   ESTANTES
-  getEstante(){
-    this.estanteService.getAll()
-      .subscribe(
-        (res) => {
-          this.estantes = res;
-          console.log(this.estantes);
-        },
-        (err) => {
-          console.error(err);
-        }
-      )
-  }
-
-  onDelete(id: any) {
-    this.confirmationService.confirm({
-      message: 'Está seguro que desea eliminar?',
-      accept: () => {
-        this.estanteService.delete(id)
-          .subscribe(
-            (res) => {
-              this.getEstante();
             },
             (error) => {
               this.display = true;

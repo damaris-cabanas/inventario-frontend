@@ -7,8 +7,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DepositoModule } from './@core/domain/deposito/deposito.module';
-// import { EstantesModule } from './@core/domain/estantes/estantes.module';
-import { MercaderiaModule } from './@core/domain/mercaderia/mercaderia.module';
 import { SharedModule } from './@core/shared/shared.module';
 import { LoginComponent } from './@core/domain/login/login.component';
 import { RegisterComponent } from './@core/domain/register/register.component';
@@ -37,9 +35,9 @@ import { EstanteModule } from './@core/domain/estantes/estantes.module';
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    LoginComponent, 
-    RegisterComponent, 
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
     SettingComponent,
     ChangePasswordComponent,
     NuevoUsuarioComponent,
@@ -65,7 +63,6 @@ import { EstanteModule } from './@core/domain/estantes/estantes.module';
     AppRoutingModule,
     DepositoModule,
     EstanteModule,
-    MercaderiaModule,
     SharedModule,
     MenuModule,
     TableModule,
