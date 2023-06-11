@@ -14,7 +14,7 @@ export class UsuariosService extends GenericService<Usuario>{
     super("user", httpClient);
   }
 
-   url= 'http://node:3050/api/v1'
+   url= 'http://10.4.210.99:3050/api/v1'
 
   async changePassword(user:ChangeUser){
     return await this.httpClient.post(this.url+"/user/changePassword", user).toPromise();

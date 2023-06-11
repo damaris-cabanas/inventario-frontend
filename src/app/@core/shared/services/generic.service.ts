@@ -6,7 +6,7 @@ export class GenericService<Model>{
 
   constructor(private readonly dir:string,private readonly _httpClient:HttpClient) {}
 
-  url = 'http://node:3050/api/v1'
+  url = 'http://10.4.210.99:3050/api/v1'
 
   async getMany(){
     return await this._httpClient.get<Array<Model>>(this.url+"/"+this.dir).toPromise();
