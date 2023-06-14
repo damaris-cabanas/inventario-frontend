@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  URL_API: 'http://10.4.210.99:3050/api/v1',
+  URL_API: 'http://back-container:3050/api/v1',
 };
