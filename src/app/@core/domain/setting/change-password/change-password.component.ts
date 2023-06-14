@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/@core/shared/services/auth.service';
 import { ValidatorService } from 'src/app/@core/shared/services/validator.service';
 import { UsuariosService } from '../../usuario/usuario.service';
@@ -11,7 +11,7 @@ import { UsuariosService } from '../../usuario/usuario.service';
 })
 export class ChangePasswordComponent implements OnInit {
 
-  formCambiar: FormGroup;
+  formCambiar: UntypedFormGroup;
   formError:{ [key:string]:string } = {
     password:'',
     new_password:''
@@ -22,7 +22,7 @@ export class ChangePasswordComponent implements OnInit {
     private validatoForm:ValidatorService, 
     private auth:AuthService
   ) { 
-    this.formCambiar = new FormGroup({});
+    this.formCambiar = new UntypedFormGroup({});
   }
 
   ngOnInit(): void {
@@ -30,9 +30,9 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   private buildForm() {
-    this.formCambiar = new FormGroup({
-      password: new FormControl('', [Validators.required]),
-      new_password: new FormControl('', [Validators.required])
+    this.formCambiar = new UntypedFormGroup({
+      password: new UntypedFormControl('', [Validators.required]),
+      new_password: new UntypedFormControl('', [Validators.required])
     });
   }
 

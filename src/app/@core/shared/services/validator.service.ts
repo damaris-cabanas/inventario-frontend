@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class ValidatorService {
 
   constructor() { }
 
-  getErrors(form:FormGroup){
+  getErrors(form:UntypedFormGroup){
     let result=[];
     for(let v in form.controls){
       let msj="";

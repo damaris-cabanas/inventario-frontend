@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, Form, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, Form, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ValidatorService } from '../../shared/services/validator.service';
 import { UsuariosService } from '../usuario/usuario.service';
 
@@ -10,7 +10,7 @@ import { UsuariosService } from '../usuario/usuario.service';
 })
 export class RegisterComponent implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   stateOptions: any[] = [];
   formError:{[key:string]:string}={
     nombre:'',
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
 
 
   constructor(private userService:UsuariosService, private validatoForm:ValidatorService) {
-    this.form = new FormGroup({});
+    this.form = new UntypedFormGroup({});
    }
 
   ngOnInit(): void {
@@ -30,11 +30,11 @@ export class RegisterComponent implements OnInit {
   }
 
   private buildForm() {
-    this.form = new FormGroup({
-      nombre: new FormControl('', [Validators.required, Validators.maxLength(10)]),
-      login: new FormControl('', [Validators.required, Validators.maxLength(10)]),
-      password: new FormControl('', [Validators.required]),
-      passwordRepetido: new FormControl('', [Validators.required]),
+    this.form = new UntypedFormGroup({
+      nombre: new UntypedFormControl('', [Validators.required, Validators.maxLength(10)]),
+      login: new UntypedFormControl('', [Validators.required, Validators.maxLength(10)]),
+      password: new UntypedFormControl('', [Validators.required]),
+      passwordRepetido: new UntypedFormControl('', [Validators.required]),
     });
   }
 
